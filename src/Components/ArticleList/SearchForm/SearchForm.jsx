@@ -1,14 +1,19 @@
-export const SearchForm = ({ onSearch }) => {
+export const SearchForm = ({onSearch}) => {
+  
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSearch(event.target.elements.topic.value);
+    onSearch(event.target.elements.search.value)
     event.target.reset();
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="topic" placeholder="Search articles..." />
-      <button type="submit">Search</button>
+      <input
+        type="text"
+        name="search"
+        placeholder="Search articles..."
+      />
+      <button>Search</button>
     </form>
-  );
-};
+  )
+}

@@ -1,35 +1,42 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArticleList } from "./Components/ArticleList/ArticleList";
-import { fetchArticlesWithTopic } from "./articles-api"
+import { fetchArticlesWithTopic } from "./articles-api";
 import { SearchForm } from "./Components/ArticleList/SearchForm/SearchForm";
 
 
 export const App = () => {
-	const [articles, setArticles] = useState([]);
+
+  const [articels, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-	const handleSearch = async (topic) => {
+  const handleSearch = async (topic) => {
     try {
-			setArticles([]);
-			setError(false);
+      setArticles([]);
+      setError(false);
       setLoading(true);
       const data = await fetchArticlesWithTopic(topic);
       setArticles(data);
-    } catch (error) {
+      }
+      catch {
       setError(true);
-    } finally {
+      }
+      finally {
       setLoading(false);
-    }
-  };
+      }
+  }
+
 
   return (
     <div>
-      <SearchForm onSearch={handleSearch} />
-      {loading && (<p>Зачекайте...</p>)}
-      {error && (<p>Помилка.Перезавантаж сторінку!</p>)}
-      {articles.length > 0 && <ArticleList items={articles} />}
+      <h1>
+        Articels
+      </h1>
+      <SearchForm onSearch={ handleSearch } />
+
+      {loading && (<p>Зачекай....</p>)}
+      {error && (<p>Ой.Щось пішло не так. Перезавантаж сторінку.</p>)}
+      {articels.length > 0 && (<ArticleList items={articels} />)}
     </div>
-  );
-};
+  )
+}
