@@ -14,7 +14,7 @@ export const App = () => {
 
   const onSubmit = async (topic) => {
     setPage(1);
-    setQuary(topic);
+    setQuary(`${Date.now()}/${topic}`);
     setArticles([]);
     setLoading(false);
     setError(true);
