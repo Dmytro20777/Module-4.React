@@ -34,8 +34,7 @@ useEffect(() => {
       setError(false);
       setLoading(true);
       const data = await fetchArticlesWithTopic(quary, page);
-      setArticles((prevArticles) => [prevArticles, ...data]);
-      setArticles(data);
+      setArticles((prevArticles) => [...prevArticles, ...data]);
     } catch (error) {
       console.error(error);
       setError(true);
